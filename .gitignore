@@ -1,0 +1,10 @@
+*~
+*.[ao]
+build/
+devel/
+src/CMakeLists.txt
+LICENSE
+Thumbs.db
+/setup_ubuntu_2.md
+/.#kinectv2.sh
+*.run
