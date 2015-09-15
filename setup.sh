@@ -20,11 +20,23 @@ sudo apt-get -y upgrade
 
 # ファイルブラウザから端末を起動できるようにする.
 sudo apt-get -yV install nautilus-open-terminal
-# emacs24のインストール
-sudo apt-get -yV install emacs24
-# gitの設定
-sudo apt-get -yV install git
 
+# emacs24のインストール
+#sudo apt-get -yV install emacs24
+cd ~/Downloads
+wget http://ftp.gnu.org/gnu/emacs/emacs-24.5.tar.gz
+tar -xf emacs-24.5.tar.gz
+cd emacs-24.5
+./configure
+make
+sudo make install
+cd ~
+#git 最新版のインストール
+sudo add-apt-repository ppa:git-core/ppa  
+sudo apt-get -y  update  
+sudo apt-get -yV install git
+#git flowのインストール
+sudo apt-get install git-flow
 #ccmake install
 sudo apt-get -y update
 sudo apt-get -yV cmake-curses-guils
