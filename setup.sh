@@ -1,5 +1,5 @@
 #!/bin/sh
-
+echo "Installation starts ..."
 #レポジトリの追加
 #gnome-tweak-tool, ubuntu-tweak
 yes | sudo add-apt-repository ppa:tualatrix/ppa
@@ -23,20 +23,22 @@ sudo apt-get -yV install nautilus-open-terminal
 
 # emacs24のインストール
 #sudo apt-get -yV install emacs24
+sudo apt-get -yV install build-essential
+sudo apt-get -yV build-dep emacs24
 cd ~/Downloads
 wget http://ftp.gnu.org/gnu/emacs/emacs-24.5.tar.gz
 tar -xf emacs-24.5.tar.gz
 cd emacs-24.5
 ./configure
-make
+make -j -l
 sudo make install
 cd ~
 #git 最新版のインストール
-sudo add-apt-repository ppa:git-core/ppa  
+yes | sudo add-apt-repository ppa:git-core/ppa  
 sudo apt-get -y  update  
 sudo apt-get -yV install git
 #git flowのインストール
-sudo apt-get install git-flow
+sudo apt-get -yV  install git-flow
 #ccmake install
 sudo apt-get -y update
 sudo apt-get -yV cmake-curses-guils
@@ -50,8 +52,6 @@ sudo apt-get -yV install gnuplot-x11
 # OpenCV install
 # インストールするOpenCVのバージョン
 OPENCV_VERSION="2.4.10"
-
-sudo apt-get -yV install build-essential
 
 sudo apt-get -yV install opencl-headers
 #
@@ -131,4 +131,4 @@ sudo apt-get -yV install cmake-curses-gui
 sudo apt-get install ccache
 sudo apt-get install colorgcc
 
-
+echo "Installation has been  finished."
