@@ -1,2 +1,7 @@
 #!/bin/sh
-echo "export PATH=\$PATH:/usr/local/texlive/2015/bin/x86_64-linux" >> ~/.bashrc
+script_dir_path=$(dirname $(readlink -f $0))
+echo "pwd_dir is $script_dir_path"
+cd /tmp/
+pwd
+cd $script_dir_path
+pwd

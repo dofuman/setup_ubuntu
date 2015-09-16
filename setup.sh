@@ -1,5 +1,5 @@
 #!/bin/sh
-pwd_dir=$(cd $(dirname $0); pwd)
+pwd_dir=$(dirname $(readlink -f $0))
 echo "Installation starts ..."
 #レポジトリの追加
 #gnome-tweak-tool, ubuntu-tweak
@@ -162,4 +162,4 @@ cp latexmkrc ~/.latexmkrc
 echo "Tex Install Finished !!"
 
 
-echo "Installation has been  finished."
+echo "ALL installation has been finished."
