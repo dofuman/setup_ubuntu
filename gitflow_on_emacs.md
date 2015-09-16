@@ -18,28 +18,20 @@ Git-flowを導入するのは簡単だが、emacs, magitと連携させるのは
 ## 2 install 手順
 
 ### 2.2 emacs24.4のinstall
-不必要なものを予めremoveしておく。
-ubuntu14.04の場合、aptで提供されているemacsのversionは24.3なので
-emacs24.3以下をインストールしている場合はアンインストールする。
-emacsのversionがわからない場合は、emacsを開いてから次のコマンドを
-実行する。`M-x version`
-
-では、emacs24.3と関連パッケージをアンインストールする。以下のコマンドを
-実行する。
+emacs24.4をインストールする手順。既存のemacsのversionが24.3以下の場合は
+アンインストールする。
 
 ```sh
 sudo apt-get remove emacs
 sudo apt-get autoremove
 ```
 
-慎重にアンインストールしたかったので、まずはemacs本体のみをremoveしてから、
-不必要になった関連パッケージをautoremoveでアンインストールした。
+autoremoveは削除されるパッケージを慎重に確認すること。
 
-次にemacs24.4をソースからビルドし、インストールする。
-[このページ](http://ubuntuhandbook.org/index.php/2014/10/emacs-24-4-released-install-in-ubuntu-14-04/)
-を参考にしたので、わからなければそちらを参照すること。
+emacs24.4のインストール手順は
+[このページ](http://ubuntuhandbook.org/index.php/2014/10/emacs-24-4-released-install-in-ubuntu-14-04/)を参考にした。
 
-まずビルドに必要な依存パッケージをインストールする。
+ビルドに必要な依存パッケージをインストールする。
 
 ```sh
 sudo apt-get install build-essential
@@ -48,6 +40,7 @@ sudo apt-get build-dep emacs24
 
 次に、emacs24.4のソースを[公式ページ](http://ftp.gnu.org/gnu/emacs/)からダウンロード
 する。`emacs-24.4.tar.gz`と書いてある箇所を見つけて、クリックすればダウンロードが始まる。
+`wget http://ftp.gnu.org/gnu/emacs/emacs-24.4.tar.gz`でもおｋ。
 *ここからはダウンロード先が~/Downloads/*以下であると仮定してすすめる。
 
 ```sh
@@ -55,6 +48,7 @@ cd ~/Downloads
 tar -xf emacs-24.4.tar.gz
 cd emacs-24.4
 ```
+
 次に以下のコマンドでemacs24.4をビルドしてインストールする。
 
 ```sh
@@ -62,7 +56,6 @@ cd emacs-24.4
 make
 sudo make install
 ```
-参照ページでは、Emacs24.4のLauncherを作る項目があったが、何もせずとも問題なかった。
 
 ### 2.3 git-2.5.1のinstall
 aptで提供されているgitのversionではmagit-gitflow.elが動いてくれないので、
@@ -93,9 +86,9 @@ Dと表示されたら、`x`キーを押し、削除を実行する。
 該当するパッケージの箇所にカーソルを合わせてから`i`キーを押すと選択したパッケージ
 の先頭に`I`が表示されているはずなので、よければそのまま、`x`キーを押してインストールすれば良い。
 
-	magit
-	magit-popup
-	magit-gitflow
+- magit
+- magit-popup
+- magit-gitflow
 
 インストールが終了したら、`M-x package-initialize`を実行するか、emacsを再起動する。
 エラーメッセージがでなければ、次はinit.elにmagit-gitflowの設定を記述する。
@@ -112,8 +105,8 @@ Dと表示されたら、`x`キーを押し、削除を実行する。
 
 ## 3 Usage
 
-- `C-x g`で`magit-status`を呼ぶ。
-- magit-statusバッファで`C-f`を実行する。
+- `magit-status`を開く
+- magit-statusバッファで`C-f`
 
 
 
