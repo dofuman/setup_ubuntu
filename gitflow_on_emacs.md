@@ -1,10 +1,14 @@
 # git-flow on emacs featured magit
+*注意*
+- このスクリプトはあなたの環境を破壊する可能性があります。実行は自己責任でおねがいします。
+
+
 Git-flowを導入するのは簡単だが、emacs, magitと連携させるのは
 手間だったので、以下にやり方を示す。
 ## 1 required
-大森の環境で試した際のversionなど
+僕の環境で試した際のversionなど
 
-	・emacs24.4
+	・emacs24.5
 	・git2.5.1
 	・magit最新版
 	・magit-popup最新版
@@ -106,10 +110,8 @@ Dと表示されたら、`x`キーを押し、削除を実行する。
 
 
 ## 3 Usage
-使い方に関してはまだ把握出来ていないので以下適当に。
-init.elに上記の設定を追加すると、`C-x g`で`magit-status`を
-読みだした後、magit-statusバッファで`C-f`を実行すると、
-magit-gitflowを呼び出すことができる。
+- `C-x g`で`magit-status`を呼ぶ。
+- magit-statusバッファで`C-f`を実行する。
 
 
 
