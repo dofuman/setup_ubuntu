@@ -111,6 +111,7 @@ Dと表示されたら、`x`キーを押し、削除を実行する。
 
 
 ## 3 Usage
+
 - `C-x g`で`magit-status`を呼ぶ。
 - magit-statusバッファで`C-f`を実行する。
 
