@@ -1,24 +1,28 @@
 #setup_ubuntu
-***
-*注意*
+
+- *注意 1*
+
 ここにおいてあるスクリプトの中には`sudo rm -rf`を実行するものが含まれています。
 あなたのOSを破壊する可能性があります。自己責任で実行してください。
 
- - リブートしたときの時計のズレを防ぐ
+
+- リブートしたときの時計のズレを防ぐ
+
 `sudo sed -i 's/UTC=yes/UTC=no/g' /etc/default/rcS`
 
- - ホームディレクトリの日本語名を英語表記に変更する
+- ホームディレクトリの日本語名を英語表記に変更する
+
 `env LANGUAGE=C LC_MESSAGES=C xdg-user-dirs-gtk-update`
 
- - capsを追加のctrlに変更する.
+- capsを追加のctrlに変更する.
+
 `dconf reset /org/gnome/settings-daemon/plugins/keyboard/active`
 `dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:nocaps']"`
 
 ## 1.環境構築
-*注意点*
-以下のスクリプトを実行する前に,nvidiaのcuda対応グラフィックドライバを
-インストールしないでください。ROSをインストール前にそれをすると、最悪xserverが
-ぶっ壊れて、ubuntuが死にました。
+
+
+
 
 ここにあるスクリプトは、ubuntu14.04でkinectv2が動く環境を整えるためのものです。
 
@@ -60,8 +64,17 @@ intelが提供しているパッケージを持ってきてください。
 あとはcuda-7.0対応のドライバをインストールしましょう.
 
 ## 1.2 cuda対応グラフィックドライバのインストール方法.
-[cuda-7.0](https://developer.nvidia.com/cuda-downloads)がリリースされたので注意.
-以下の手順を実行した後,試すこと.
+[cuda-7.5](https://developer.nvidia.com/cuda-downloads)がリリースされたので注意.  
+ここでは、CUIモードからrunファイルを実行してインストールする手順を示す.  
+
+- 古いバージョンのcuda及び、ドライバをインストールしている場合、まずアンインストールしておく。
+
+```sh
+sudo /usr/local/cuda-X.Y/bin/uninstall_cuda_X.Y.pl #uninstall a toolkit
+sudo /usr/bin/nvidia-uninstall #uninstall driver
+```
+
+- grubにデフォルトのドライバを使わないように設定する。
 
 ```sh
 sudo emacs /etc/default/grub
@@ -75,9 +88,11 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo reboot
 ```
 
+- cudaのインストール手順
+
 Ctrl + Alt + F1でCUIモードを立ち上げ,
 ユーザ名,パスワードを入力し,CUIにログインする.
-次に,`sudo service lightdm stop`を実行し,x11をキルする.
+次に,`sudo service lightdm stop`を実行し,サービスを止める.
 あとは以下の通り.
 
 ```sh
@@ -93,10 +108,19 @@ sudo ./cuda_<virsion_number>_linux_64.run
 * cuda library
 * cuda sample
 
-それぞれ,インストールするかどうか聞かれるので最初のインストールでは
-graphic driverのみ`y`と入力すればよい.
+- cudaの環境設定。
 
+PATHの設定を行う。
 
+```sh
+echo '/usr/local/cuda-7.5/lib64' | sudo tee -a /etc/ld.so.conf
+echo 'export PATH=$PATH:/usr/local/cuda-7.5/bin' | tee -a ~/.bashrc
+```
+
+- 注意点。
+
+	linux kernelを手動でインストールしている場合、linux-headerもインストールすること。
+ 
 ## 1.3.OpenCLのインストール
 
 intelが提供してるOpenCLのライブラリをインストールする.
@@ -188,7 +212,7 @@ kernelのバージョンを3.16-*に上げる方法を以下に示す。
 ```sh
 sudo apt-get install linux-image-generic-lts-utopic
 uname -a #カーネルのバージョン確認
-sudo apt-get install linux-headers-3.16.0-45-generic #インストールしたlinux-imageのバージョンに合わせること。
+sudo apt-get install linux-headers-3.16.0-**-generic #インストールしたlinux-imageのバージョンに合わせること。
 ```
 
 linux-headersをインストールしないと、cuda driverのインストール時にエラーが出るので注意。
