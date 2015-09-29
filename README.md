@@ -195,8 +195,29 @@ sudo apt-get install linux-headers-3.16.0-45-generic #インストールしたli
 linux-headersをインストールしないと、cuda driverのインストール時にエラーが出るので注意。
 また、この作業は必ず慎重に行うこと。
 
+## VMware
 
+[vmware](https://my.vmware.com/jp/web/vmware/free#desktop_end_user_computing/vmware_workstation_player/12_0|PLAYER-1200|product_downloads)  
+  
+```sh
+chmod +x VMware-Player-12.*************.bundle
+sudo ./VMware-Player-12.*************.bundle
+```
 
+- エラーが出た時の対処 
+
+`"[...]timeTracker_user.c:234 bugNr=148722" `というエラー。
+
+ubuntu14.04にインストールした、vmwareで仮想windows8.1を立ち上げようとするとクラッシュする問題が出たので、
+修正法。[このサイト](https://wiki.archlinuxjp.org/index.php/VMware)を参考に。
+
+`/etc/vmware/config`上の次の箇所を修正する。`X`に使用しているCPUの動作クロックを入れれば良い。
+
+```sh
+host.cpukHz = "X" #where "X" equals the maximum speed in KHz of your host machine.  That is, its speed in MHz times 1000 or its speed in GHz times 1000000.  A 3GHz machine would be 3000000.
+ host.noTSC = TRUE
+ ptsc.noTSC = TRUE
+```
 
 
 
