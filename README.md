@@ -1,43 +1,52 @@
 #setup_ubuntu
-***
-test
-* リブートしたときの時計のズレを防ぐ
+
+- *注意 1*
+
+ここにおいてあるスクリプトの中には`sudo rm -rf`を実行するものが含まれています。
+あなたのOSを破壊する可能性があります。自己責任で実行してください。
+
+
+- リブートしたときの時計のズレを防ぐ
+
 `sudo sed -i 's/UTC=yes/UTC=no/g' /etc/default/rcS`
 
-* ホームディレクトリの日本語名を英語表記に変更する
+- ホームディレクトリの日本語名を英語表記に変更する
+
 `env LANGUAGE=C LC_MESSAGES=C xdg-user-dirs-gtk-update`
 
-* capsを追加のctrlに変更する.
+- capsを追加のctrlに変更する.
+
 `dconf reset /org/gnome/settings-daemon/plugins/keyboard/active`
 `dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:nocaps']"`
 
 ## 1.環境構築
-*注意点*
-以下のスクリプトを実行する前に,nvidiaのcuda対応グラフィックドライバを
-インストールしないでください。ROSをインストール前にそれをすると、最悪xserverが
-ぶっ壊れて、ubuntuが死にます。
 
-・インストールされるものは以下の通り。
+
+
+
+ここにあるスクリプトは、ubuntu14.04でkinectv2が動く環境を整えるためのものです。
+
+ - インストールされるものは以下の通り。
 
 |パッケージ名|説明|参考サイト|
 |:--|:--|:--|
 |ubuntu-tweak|ubuntu GUI config|[]()|
 |unity-tweak|unity config|[]()|
 |gnome-tweak|gnome config|[]()|
-|Google-chrome|インターネットブラウザ|[]()|
-|emacs24|これがなきゃ死ぬ|[]()|
+|Google-chrome||[]()|
+|emacs24|emacs24.5 ソースからビルド|[]()|
 |nautilus-open-terminal|ファイルブラウザから右クリックでターミナルを開く|[]()|
-|git|分散バージョン管理システム(どうせもうインストールしてるんでしょ?)|[]()|
-|terminator|ターミナル。画面分割ができる|[]()|
+|git|分散バージョン管理システム,PPAを追加して最新版にしてる|[]()|
+|terminator|画面分割など便利。|[]()|
 |ccmake|cmakeをGUIで設定できる|[]()|
-|compizconfig-settings-manager|特になし.これ使わなくね?|[]()|
-|synaptic|パッケージインストールをGUIで実行できる。apt-getでよろし。|[]()|
-|gnuplot|グラフ作ったりなんなり|[]()|
+|compizconfig-settings-manager|特になし.|[]()|
+|gnuplot|グラフ作る|[]()|
 |OpenCV2.4.10|画像処理ライブラリ。依存するパッケージも。|[]()|
 |PCL|点群処理ライブラリ|[]()|
-|ROS|robotとかのAPI。ミドルウェア?|[]()|
+|ROS|ロボット触るなら|[]()|
 |ccache|キャッシュを使ってコンパイルを高速化|[]()|
-|colorgcc|colorだよ!|[]()|
+|colorgcc|color|[]()|
+|texlive|color|[]()|
 
 ```sh
 sudo sh setup.sh
@@ -46,10 +55,8 @@ sudo sh setup.sh
 
 
 次はOpenCLをインストールしましょう.
-`Nishidalab-nas/public/packages/`内にある,
-`intel_sdk_for_ocl_applications_2014_ubuntu_4.6.0.92_x64.tgz`を展開して中にある,
-`install.sh`を`sudo`コマンドをつけて実行するだけです.
-サポートしていないOSと言われますが,大丈夫です.僕は大丈夫でした.あなたはわかりません.
+intelが提供しているパッケージを持ってきてください。
+サポートしていないOSと言われますが,僕の環境だと大丈夫でした.
 依存するライブラリが入っていないかもチェックしてくれるので,英文ですがちゃんと読みながら
 インストールを進めてください.インストールするコンポーネントをカスタマイズできるので,おそらく
 `for android`のパッケージはいらないのでチェックを外してインストールしましょう.
@@ -57,8 +64,17 @@ sudo sh setup.sh
 あとはcuda-7.0対応のドライバをインストールしましょう.
 
 ## 1.2 cuda対応グラフィックドライバのインストール方法.
-[cuda-7.0](https://developer.nvidia.com/cuda-downloads)がリリースされたので注意.
-以下の手順を実行した後,試すこと.
+[cuda-7.5](https://developer.nvidia.com/cuda-downloads)がリリースされたので注意.  
+ここでは、CUIモードからrunファイルを実行してインストールする手順を示す.  
+
+- 古いバージョンのcuda及び、ドライバをインストールしている場合、まずアンインストールしておく。
+
+```sh
+sudo /usr/local/cuda-X.Y/bin/uninstall_cuda_X.Y.pl #uninstall a toolkit
+sudo /usr/bin/nvidia-uninstall #uninstall driver
+```
+
+- grubにデフォルトのドライバを使わないように設定する。
 
 ```sh
 sudo emacs /etc/default/grub
@@ -72,9 +88,11 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo reboot
 ```
 
+- cudaのインストール手順
+
 Ctrl + Alt + F1でCUIモードを立ち上げ,
 ユーザ名,パスワードを入力し,CUIにログインする.
-次に,`sudo service lightdm stop`を実行し,x11をキルする.
+次に,`sudo service lightdm stop`を実行し,サービスを止める.
 あとは以下の通り.
 
 ```sh
@@ -84,20 +102,26 @@ sudo ./cuda_<virsion_number>_linux_64.run
 
 実行すると,最初は英文の利用規約が出てくるので適当にスペースキーを
 押しながら読み飛ばし,最後に同意するかどうか聞いてくるので,
-`accept`と入力し,Enterキーで次に進む.
-
-* graphic driver
-* cuda library
-* cuda sample
-
-それぞれ,インストールするかどうか聞かれるので最初のインストールでは
-graphic driverのみ`y`と入力すればよい.
+`accept`と入力し,Enterキーで次に進む.インストールするものを聞いてくるので、
+必要なものには`y`を入力、いらないものには`n`を入力.
 
 
+- cudaの環境設定。
+
+PATHの設定を行う。
+
+```sh
+echo '/usr/local/cuda-7.5/lib64' | sudo tee -a /etc/ld.so.conf
+echo 'export PATH=$PATH:/usr/local/cuda-7.5/bin' | tee -a ~/.bashrc
+```
+
+- 注意点。
+
+	linux kernelを手動でインストールしている場合、linux-headerもインストールすること。
+ 
 ## 1.3.OpenCLのインストール
 
 intelが提供してるOpenCLのライブラリをインストールする.
-西田研のNASのどこかにインストールパッケージが転がってるので
 それを見つけて `sudo ./install.sh`を実行するだけ.多分依存関係で`lsb-core`を先に
 aptからインストールしておいたほうが楽でしょう.
 
@@ -177,9 +201,6 @@ export PATH=$HOME/bin:$PATH
 
 を`~/.bashrc`の最後の行に書き込む。
 
-## LINE
-注意※ chromeの拡張機能にLINEアプリが登場したので
-そちらがおすすめ。
 ## Linux kernelの更新
 linux-images-3.13.0-*だとkinectv2が動かない可能性があるので、
 kernelの更新をする必要に迫られる場合がある。(特にlibusbの問題で)
@@ -189,7 +210,7 @@ kernelのバージョンを3.16-*に上げる方法を以下に示す。
 ```sh
 sudo apt-get install linux-image-generic-lts-utopic
 uname -a #カーネルのバージョン確認
-sudo apt-get install linux-headers-3.16.0-45-generic #インストールしたlinux-imageのバージョンに合わせること。
+sudo apt-get install linux-headers-3.16.0-**-generic #インストールしたlinux-imageのバージョンに合わせること。
 ```
 
 linux-headersをインストールしないと、cuda driverのインストール時にエラーが出るので注意。
