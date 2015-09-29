@@ -161,5 +161,17 @@ sudo kanji-config-updmap-sys ipaex
 cp latexmkrc ~/.latexmkrc
 echo "Tex Install Finished !!"
 
+echo "indicators installation start."
+#indicator-multiload
+yes | sudo add-apt-repository ppa:indicator-multiload/stable-daily
+#indicator-sensor
+yes | sudo apt-add-repository ppa:alexmurray/indicator-sensors
+#indicator-sound-switcher
+yes | sudo apt-add-repository ppa:yktooo/ppa
+
+sudo apt-get -yV install indicator-multiload
+sudo apt-get -yV install indicator-sensors
+sudo apt-get -yV install indicator-sound-switcher
+
 
 echo "ALL installation has been finished."
