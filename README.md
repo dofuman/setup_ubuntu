@@ -102,11 +102,9 @@ sudo ./cuda_<virsion_number>_linux_64.run
 
 実行すると,最初は英文の利用規約が出てくるので適当にスペースキーを
 押しながら読み飛ばし,最後に同意するかどうか聞いてくるので,
-`accept`と入力し,Enterキーで次に進む.
+`accept`と入力し,Enterキーで次に進む.インストールするものを聞いてくるので、
+必要なものには`y`を入力、いらないものには`n`を入力.
 
-* graphic driver
-* cuda library
-* cuda sample
 
 - cudaの環境設定。
 
