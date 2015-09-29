@@ -19,6 +19,17 @@
 `dconf reset /org/gnome/settings-daemon/plugins/keyboard/active`
 `dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:nocaps']"`
 
+- for laptop
+
+画面の明るさ調整。起動時に画面の明るさを暗くする。　
+
+```sh
+sudo apt-get install xbacklight
+```
+
+自動起動するアプリケーションに次のコマンドを追加`xbacklight -set 40`
+
+
 ## 1.環境構築
 
 
