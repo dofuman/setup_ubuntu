@@ -268,14 +268,14 @@ sudo apt-get install rosemacs-el
 `catkin_ws/src`に.rosinstallファイルがない場合、以下を実行する。(あれば、スキップすること)
 
 ```sh
-mkdir -p catkin\_ws/src
-cd YOUR\_CATKIN\_WS
+mkdir -p catkin_ws/src
+cd YOUR_CATKIN_WS
 wstool init src
 ```
 catkin_ws/srcに.rosinstallがあればここから
 
 ```sh
-cd YOUR\_CATKIN\_WS/src
+cd YOUR_CATKIN_WS/src
 wstool set ros_emacs_utils --git https://github.com/code-iai/ros_emacs_utils.git
 wstool update ros_emacs_utils
 cd ..
