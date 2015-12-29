@@ -39,25 +39,25 @@ sudo apt-get install xbacklight
 
  - インストールされるものは以下の通り。
 
-|パッケージ名|説明|参考サイト|
-|:--|:--|:--|
-|ubuntu-tweak|ubuntu GUI config|[]()|
-|unity-tweak|unity config|[]()|
-|gnome-tweak|gnome config|[]()|
-|Google-chrome||[]()|
-|emacs24|emacs24.5 ソースからビルド|[]()|
-|nautilus-open-terminal|ファイルブラウザから右クリックでターミナルを開く|[]()|
-|git|分散バージョン管理システム,PPAを追加して最新版にしてる|[]()|
-|terminator|画面分割など便利。|[]()|
-|ccmake|cmakeをGUIで設定できる|[]()|
-|compizconfig-settings-manager|特になし.|[]()|
-|gnuplot|グラフ作る|[]()|
-|OpenCV2.4.10|画像処理ライブラリ。依存するパッケージも。|[]()|
-|PCL|点群処理ライブラリ|[]()|
-|ROS|ロボット触るなら|[]()|
-|ccache|キャッシュを使ってコンパイルを高速化|[]()|
-|colorgcc|color|[]()|
-|texlive|color|[]()|
+|パッケージ名|説明|
+|:--|:--|
+|ubuntu-tweak|ubuntu GUI config|
+|unity-tweak|unity config|
+|gnome-tweak|gnome config|
+|Google-chrome||
+|emacs24|emacs24.5 ソースからビルド|
+|nautilus-open-terminal|ファイルブラウザから右クリックでターミナルを開く|
+|git|分散バージョン管理システム,PPAを追加して最新版にしてる|
+|terminator|画面分割など便利。|
+|ccmake|cmakeをGUIで設定できる|
+|compizconfig-settings-manager|特になし.|
+|gnuplot|グラフ作る|
+|OpenCV2.4.10|画像処理ライブラリ。依存するパッケージも。|
+|PCL|点群処理ライブラリ|
+|ROS|ロボット触るなら|
+|ccache|キャッシュを使ってコンパイルを高速化|
+|colorgcc|color|
+|texlive|color|
 
 ```sh
 sudo sh setup.sh
@@ -251,7 +251,80 @@ host.cpukHz = "X" #where "X" equals the maximum speed in KHz of your host machin
  ptsc.noTSC = TRUE
 ```
 
+## rosemacs
+***
 
+rosemacsの導入。
 
+- aptからインストール(試してないです。)
 
+```sh
+sudo apt-get install ros-indigo-rosemacs
+sudo apt-get install rosemacs-el
+```
 
+- sourceからビルド
+
+`catkin_ws/src`に.rosinstallファイルがない場合、以下を実行する。(あれば、スキップすること)
+
+```sh
+mkdir -p catkin_ws/src
+cd YOUR_CATKIN_WS
+wstool init src
+```
+catkin_ws/srcに.rosinstallがあればここから
+
+```sh
+cd YOUR_CATKIN_WS/src
+wstool set ros_emacs_utils --git https://github.com/code-iai/ros_emacs_utils.git
+wstool update ros_emacs_utils
+cd ..
+catkin_make
+catkin_make install
+```
+
+catkin_ws内にinstallフォルダが生成される。次に、`.emacs.d/init.el`に
+以下を記述する。
+
+```lisp
+(add-to-list 'load-path "/opt/ros/DISTRO/share/emacs/site-lisp")
+;; or whatever your install space is + "/share/emacs/site-lisp"
+(require 'rosemacs-config)
+```
+
+今回の場合だと、`$(YOUR_CATKIN_WS_PATH)/install/share/emacs/site-lisp`になる。
+
+また、`~/.bashrc`に`source $(YOUR_CATKIN_WS_PATH)/install/setup.bash`を記述する。
+
+catkin_workspaceを分けて使用している場合は、`/opt/ros/indigo`にinstallしてもよいが
+おすすめはしない。また、ユーザ権限などは自分で調整すること。
+
+*注意*  
+
+以下のコマンドは`root`で実行するため、自己責任でやること。筆者は責任をとりません。
+
+```sh
+sudo -s
+cd YOUR_CATKIN_WS
+catkin_make -DCMAKE_INSTALL_PREFIX=/opt/ros/indigo install
+```
+
+- Prefix key を追加
+
+`.emacs.d/init.el`に次を追記する。
+
+```lisp
+(global-set-key "\C-x\C-r" ros-keymap)
+```
+
+- rosemacs コマンド
+
+[wiki.ros.org/rosemacs](http://wiki.ros.org/rosemacs)
+
+や
+
+[ROS勉強記録](http://ros-robot.blogspot.jp/2010/01/rosemacs.html)
+
+を参照。
+
+setup.bashをloadした、terminalからemacsを開かないとrosemacsは使えないので注意。
