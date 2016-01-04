@@ -23,18 +23,18 @@ sudo apt-get -y upgrade
 sudo apt-get -yV install nautilus-open-terminal
 
 # emacs24のインストール
-#sudo apt-get -yV install emacs24
+
 sudo apt-get -yV install build-essential
-sudo apt-get -yV install emacs24
-# sudo apt-get -yV build-dep emacs24
-# cd ~/Downloads
-# wget http://ftp.gnu.org/gnu/emacs/emacs-24.5.tar.gz
-# tar -xf emacs-24.5.tar.gz
-# cd emacs-24.5
-# ./configure
-# make -j -l
-# sudo make install
-# cd ~
+
+sudo apt-get -yV build-dep emacs24
+cd ~/Downloads
+wget http://ftp.gnu.org/gnu/emacs/emacs-24.5.tar.gz
+tar -xf emacs-24.5.tar.gz
+cd emacs-24.5
+./configure
+make -j2 -l2
+sudo make install
+cd ~
 #git 最新版のインストール
 yes | sudo add-apt-repository ppa:git-core/ppa  
 sudo apt-get -y  update  
@@ -133,34 +133,6 @@ sudo apt-get -yV install cmake-curses-gui
 sudo apt-get install ccache
 sudo apt-get install colorgcc
 
-#Tex install
-# Tex Live Installer のためのパッケージ
-sudo apt-get install -yV perl
-sudo apt-get install -yV perl-tk
-cd $pwd_dir
-cp ./data/install-tl-unx.tar.gz /tmp/
-cd /tmp/
-tar -xvzf /tmp/install-tl-unx.tar.gz
-cd install-tl-*
-echo "Start tex installer."
-sudo ./install-tl <<EOF
-I
-EOF
-
-echo "Set Path & Environments"
-
-echo "# TeX Live" >> ~/.bashrc
-echo "export INFOPATH=$INFOPATH:/usr/local/texlive/2015/texmf-dist/doc/info" >> ~/.bashrc
-echo "export MANPATH=$MANPATH:/usr/local/texlive/2015/texmf-dist/doc/man" >> ~/.bashrc
-echo "export PATH=\$PATH:/usr/local/texlive/2015/bin/x86_64-linux" >> ~/.bashrc
-cd $pwd_dir
-sudo /usr/local/texlive/2015/bin/x86_64-linux/tlmgr path add
-sudo mkdir -p /usr/local/texlive/texmf-local/web2c
-sudo cp ./texmf.cnf /usr/local/texlive/texmf-local/web2c/texmf.cnf
-sudo mktexlsr
-sudo kanji-config-updmap-sys ipaex
-cp latexmkrc ~/.latexmkrc
-echo "Tex Install Finished !!"
 
 echo "indicators installation start."
 #indicator-multiload
@@ -169,7 +141,7 @@ yes | sudo add-apt-repository ppa:indicator-multiload/stable-daily
 yes | sudo apt-add-repository ppa:alexmurray/indicator-sensors
 #indicator-sound-switcher
 yes | sudo apt-add-repository ppa:yktooo/ppa
-
+sudo apt-get update
 sudo apt-get -yV install indicator-multiload
 sudo apt-get -yV install indicator-sensors
 sudo apt-get -yV install indicator-sound-switcher
