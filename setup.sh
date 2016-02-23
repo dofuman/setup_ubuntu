@@ -25,7 +25,7 @@ sudo apt-get -yV install nautilus-open-terminal
 # emacs24のインストール
 #sudo apt-get -yV install emacs24
 sudo apt-get -yV install build-essential
-sudo apt-get -yV build-dep emacs24
+sudo apt-get -y build-dep emacs24
 cd ~/Downloads
 wget http://ftp.gnu.org/gnu/emacs/emacs-24.5.tar.gz
 tar -xf emacs-24.5.tar.gz
