@@ -16,8 +16,10 @@
 
 - capsを追加のctrlに変更する.
 
-`dconf reset /org/gnome/settings-daemon/plugins/keyboard/active`
-`dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:nocaps']"`
+```sh
+dconf reset /org/gnome/settings-daemon/plugins/keyboard/active`
+dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:nocaps']"
+```
 
 - for laptop
 
