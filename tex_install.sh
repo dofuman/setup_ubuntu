@@ -20,6 +20,7 @@ echo "export INFOPATH=$INFOPATH:/usr/local/texlive/2015/texmf-dist/doc/info" >> 
 echo "export MANPATH=$MANPATH:/usr/local/texlive/2015/texmf-dist/doc/man" >> ~/.bashrc
 echo "export PATH=\$PATH:/usr/local/texlive/2015/bin/x86_64-linux" >> ~/.bashrc
 cd $pwd_dir
+
 sudo /usr/local/texlive/2015/bin/x86_64-linux/tlmgr path add
 sudo mkdir -p /usr/local/texlive/texmf-local/web2c
 sudo cp ./texmf.cnf /usr/local/texlive/texmf-local/web2c/texmf.cnf
