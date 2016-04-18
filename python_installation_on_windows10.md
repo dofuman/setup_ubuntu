@@ -1,7 +1,6 @@
 Python on windows10
 ===
-
-Python2.7の開発環境をwindows10上で構築する。
+Python2.7の開発環境をwindows10上で構築するためのメモ。
 
 - Python2.7  
     こちらから[Python2.7](https://www.python.org/downloads/)のsetupファイルをダウンロード、実行し
@@ -18,3 +17,20 @@ Python2.7の開発環境をwindows10上で構築する。
     
 - ipython
     pythonを使いやすくしたもの。`pip install ipython`を実行。
+
+- jupyter
+	ipythonをブラウザ上で動作させるためのモジュール。`pip install jupyter`でインストールされる。
+
+TODO
+===
+導入予定
+- virtualenv  
+- virtualenvwrapper  
+- chainer  
+Pythonとは関係ないが  
+- cuda  
+- cuDNN  
+
+
+
+
