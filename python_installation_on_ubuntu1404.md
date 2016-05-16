@@ -1,5 +1,7 @@
 Python on ubuntu 14.04
 ===
+
+## Python開発環境の構築[
 Python2.7の開発環境をubuntu 14.04上で構築するためのメモ。  
 目標はchainerが動くところまで。
 - Python2.7  
@@ -34,14 +36,25 @@ Python2.7の開発環境をubuntu 14.04上で構築するためのメモ。
 
 - Project in virtualenvwrapper
 
-Python仮想環境とprojectディレクトリを$PROJECT_HOMNEで指定した
+Python仮想環境とprojectディレクトリを$PROJECT_HOMEで指定した
 場所に生成する。Projectの生成以外の使い方はvirtualenvと一緒。
 
   - Projectをつくる
   
   `mkproject YOUR_PROJECT`
   
-	
+## chainer installation  
+
+- CUDAの設定
+  学習には非常に時間がかかるが、GPUを利用すれば計算が速くなる。
+  
+  必要なもの
+  - nvidiaのcuda対応グラフィックボード  
+  - cuda対応ドライバ  
+  - cuda 
+  - cuDNN
+  
+
 
 
 TODO
