@@ -14,7 +14,7 @@
  
  このサイトの通りにやればおk.
  
-## emacsへの反映
+## Edit elisp
 `dotfiles/emacs.d/inits/09_fonts.el`に記述済み.Rictyフォントを導入しないとemacs起動時に
 怒られるから注意
 
