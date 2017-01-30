@@ -15,18 +15,6 @@ sudo apt -yV install google-chrome-stable
 sudo apt -y update
 sudo apt -y upgrade
 
-# emacs25.1のインストール
-sudo apt -yV install build-essential checkinstall
-sudo apt -y build-dep emacs24
-cd ~
-mkdir emacs && cd emacs 
-wget http://ftp.gnu.org/gnu/emacs/emacs-25.1.tar.gz
-tar -xf emacs-25.1.tar.gz
-cd emacs-25.1
-./configure
-make -j8 -l8
-sudo checkinstall
-cd ~
 
 #ccmake install
 sudo apt -y update
@@ -60,5 +48,4 @@ sudo apt -y update
 sudo apt -yV install indicator-multiload
 sudo apt -yV install indicator-sensors
 sudo apt -yV install indicator-sound-switcher
-
 echo "ALL installation has been finished."
