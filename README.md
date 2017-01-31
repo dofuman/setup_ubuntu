@@ -98,4 +98,13 @@ ln -s /usr/bin/colorgcc gcc
 export PATH=$HOME/bin:$PATH  
 ```
 
+## 既知のエラーと解決策
+
+colorgccとccacheを有効にした状態で,emacs上でirony-serverをbuildするのに失敗する.
+`permission denied`になるので, 一旦,`~/.colorgccrc`をrenameして無効化した状態だと
+正常にbuildできる.一度ビルドすれば,再ビルドが必要になるまでccacheとcolorgccを有効
+にしていても問題はない.
+
+なのでemacs上で`M-x irony-install-server`を実行してから,ccacheとcolorgccの設定
+をしたほうが良い.
 
