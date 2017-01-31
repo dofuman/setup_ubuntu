@@ -16,3 +16,10 @@ cd emacs-25.1
 make -j $(($(nproc) + 1)) -l $(($(nproc) + 1))
 sudo make install
 cd $pwd_dir
+
+# emacsで使う外部パッケージをインストール
+sudo apt -yV install cmigemo ruby ruby-dev rbenv
+sudo apt -yV install python-pip3  
+sudo pip3 install virtualenv  
+sudo apt -yV install libclang-dev clang
+
