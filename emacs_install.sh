@@ -14,5 +14,5 @@ cd emacs-25.1
 ./autogen.sh
 ./configure
 make -j $(($(nproc) + 1)) -l $(($(nproc) + 1))
-sudo checkinstall
+sudo make install
 cd $pwd_dir
