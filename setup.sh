@@ -11,6 +11,11 @@ sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /et
 sudo apt -y update
 sudo apt -yV install google-chrome-stable
 
+# Dropbox
+cd ~/Downloads/
+wget -v https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb
+sudo deb -i dropbox_2015.10.28_amd64.deb
+
 #更新確認
 sudo apt -y update
 sudo apt -y upgrade
@@ -33,8 +38,8 @@ sudo update-alternatives --config x-terminal-emulator
 sudo apt -y update
 
 #speed up compilation tools
-sudo apt install ccache
-sudo apt install colorgcc
+sudo apt -yV install ccache
+sudo apt -yV install colorgcc
 
 
 echo "indicators installation start."
