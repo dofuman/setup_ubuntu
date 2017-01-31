@@ -20,12 +20,8 @@ sudo deb -i dropbox_2015.10.28_amd64.deb
 sudo apt -y update
 sudo apt -y upgrade
 
-
-#ccmake install
 sudo apt -y update
-sudo apt -yV cmake-curses-gui
 sudo apt -yV install terminator
-sudo apt -yV install gnuplot-x11
 
 # 最初は前提ソフトウエアのインストール
 
@@ -38,6 +34,7 @@ sudo update-alternatives --config x-terminal-emulator
 sudo apt -y update
 
 #speed up compilation tools
+sudo apt -yV cmake cmake-curses-gui
 sudo apt -yV install ccache
 sudo apt -yV install colorgcc
 
