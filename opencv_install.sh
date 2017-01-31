@@ -22,7 +22,7 @@ git clone https://github.com/opencv/opencv.git
 cd opencv
 mkdir build
 cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D WITH_TBB=ON -D WITH_V4L=ON -D WITH_QT=ON -D WITH_OPENGL=ON ..
-make -j $(($(nproc) + 1))
+make -j $(($(nproc) + 1)) -l $(($(nproc) + 1))
 
 sudo make install
 sudo /bin/bash -c 'echo "/usr/local/lib" > /etc/ld.so.conf.d/opencv.conf'
