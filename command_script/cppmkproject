@@ -1,0 +1,44 @@
+#!/bin/sh
+
+#コマンド引数がただしいかチェック
+if [ $# -ne 1 ]; then
+	echo "Usage: `basename $0` test" 
+	exit 1
+else
+	# 引数が文字列か確認
+	expr 1 + $1 > /dev/null 2>&1
+	case $? in
+		0 | 1 ) echo "文字列を入力してください" && exit 1 ;;
+		* ) echo "$1 projectを作成します" ;;
+	esac	
+fi
+
+#現在ディレクトリに同名のディレクトリが存在するかチェック
+if [ -d $1 ]; then
+	echo "$1"
+	echo "Your desired directory already exits."
+	exit 1
+fi
+
+#プロジェクトディレクトリ生成
+mkdir -p $1/src && mkdir -p $1/build && touch $1/src/main.cpp
+
+
+# cmakelists.txtのテンプレートファイルをコピーする.
+if [ -f $HOME/Templates/CMakeLists.txt ]; then
+	cp $HOME/Templates/CMakeLists.txt $1/ 
+	if [ $? = 0 ]; then
+		echo "Cmake template is copied in your project dir."
+	else
+		echo "Failed to copy cmake template."
+		exit 1
+	fi	
+else
+	echo "Cmake template does not exist."
+fi
+
+
+
+echo "Making cpp project is finished!"
+
+exit 0
