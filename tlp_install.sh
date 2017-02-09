@@ -1,15 +1,16 @@
 #!/bin/sh
+# ラップトップ向け省電力設定
 
 # tlp install
 yes | sudo add-apt-repository ppa:linrunner/tlp
-sudo apt -yV update
-sudo apt install tlp tlp-rdw
+sudo apt -y update
+sudo apt -yV install tlp tlp-rdw
 
 # for thinkpad x250
 
 yes | sudo add-apt-repository ppa:morgwai/tpbat
-sudo apt -yV update
-sudo apt install tpacpi-bat
+sudo apt -y update
+sudo apt -yV install tpacpi-bat
 
 # battery configuration
 
