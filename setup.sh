@@ -8,7 +8,7 @@ pwd_dir=$(dirname $(readlink -f $0))
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
 sudo apt -y update
-sudo apt -yV install google-chrome-stable
+sudo apt -y install google-chrome-stable
 
 # Dropbox
 cd ~/Downloads/
@@ -16,7 +16,7 @@ wget -v https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_a
 sudo deb -i dropbox_2015.10.28_amd64.deb
 
 sudo apt -y update
-sudo apt -yV install terminator
+sudo apt -y install terminator
 
 #terminator設定
 gsettings set org.gnome.desktop.default-applications.terminal exec /usr/bin/terminator
@@ -25,7 +25,7 @@ sudo update-alternatives --config x-terminal-emulator
 
 
 #speed up compilation tools
-sudo apt -yV cmake cmake-curses-gui
+sudo apt -y cmake cmake-curses-gui
 
 echo "indicators installation start."
 #indicator-multiload
@@ -35,6 +35,6 @@ yes | sudo add-apt-repository ppa:dgadomski/indicator-sensors
 #indicator-sound-switcher
 yes | sudo apt-add-repository ppa:yktooo/ppa
 sudo apt -y update
-sudo apt -yV install indicator-multiload
-sudo apt -yV install indicator-sensors
-sudo apt -yV install indicator-sound-switcher
+sudo apt -y install indicator-multiload
+sudo apt -y install indicator-sensors
+sudo apt -y install indicator-sound-switcher
