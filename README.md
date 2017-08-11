@@ -1,4 +1,4 @@
-#setup_ubuntu for ubuntu 16.04
+# setup_ubuntu for ubuntu 16.04
 
 ここにおいてあるスクリプトの中には`sudo rm -rf`を実行するものが含まれています。
 あなたのOSを破壊する可能性があります。自己責任で実行してください。
