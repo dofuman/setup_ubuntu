@@ -10,7 +10,7 @@ case $THECODE in # nkf が返す文字コードにあわせる
     Shift-JIS) KANJI="kanji=sjis";;
     ISO-2022-JP) KANJI="-kanji=jis";;
 esac
-PLATEX="platex"
+PLATEX="pdflatex"
 CLASS=`sed -n '/documentclass/p' $* | sed '/%.*documentclass/d' | sed -n '1p'`
 case $CLASS in
     *{u*) PLATEX="uplatex";;
