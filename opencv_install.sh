@@ -11,7 +11,7 @@ cd /tmp/opencv
 echo "Install the dependencies..."
 # Install the dependencies.
 sudo apt install build-essential cmake git
-sudo apt install build-essential pkg-config unzip ffmpeg qtbase5-dev python-dev python3-dev python-numpy python3-numpy
+sudo apt install pkg-config unzip ffmpeg qtbase5-dev python-dev python3-dev python-numpy python3-numpy
 sudo apt install libopencv-dev libgtk-3-dev libdc1394-22 libdc1394-22-dev libjpeg-dev libpng12-dev libtiff5-dev libjasper-dev
 sudo apt install libavcodec-dev libavformat-dev libswscale-dev libxine2-dev libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev
 sudo apt install libv4l-dev libtbb-dev libfaac-dev libmp3lame-dev libopencore-amrnb-dev libopencore-amrwb-dev libtheora-dev
