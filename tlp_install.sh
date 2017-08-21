@@ -4,13 +4,13 @@
 # tlp install
 yes | sudo add-apt-repository ppa:linrunner/tlp
 sudo apt update
-sudo apt install tlp tlp-rdw
+sudo apt install -y tlp tlp-rdw
 
 # for thinkpad x250
 
 yes | sudo add-apt-repository ppa:morgwai/tpbat
 sudo apt update
-sudo apt install tpacpi-bat
+sudo apt install -y tpacpi-bat
 
 # battery configuration
 
