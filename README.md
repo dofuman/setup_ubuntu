@@ -13,7 +13,7 @@
 
 `env LANGUAGE=C LC_MESSAGES=C xdg-user-dirs-gtk-update`
 
-*ここからはは日本語キーボード使用する人もしくはラップトップPCを使用する人向け*
+## 日本語キーボード使用する場合
 
 - CapsLockを追加のctrlに変更する.
 
@@ -22,9 +22,9 @@ dconf reset /org/gnome/settings-daemon/plugins/keyboard/active
 dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:nocaps']"
 ```
 
-- for laptop
+## LaptopPCを使用する場合
 
-画面の明るさ調整。起動時に画面の明るさを暗くする。　
+- 画面の明るさ調整。起動時に画面の明るさを暗くする。
 
 ```sh
 sudo apt-get install xbacklight
@@ -32,6 +32,13 @@ sudo apt-get install xbacklight
 
 自動起動するアプリケーションに次のコマンドを追加`xbacklight -set 40`
 
+- TLPを導入し, 省電力設定する
 
-*ここまで*
+``` shell
+./tlp_install.sh
+```
+
+
+
+
 
