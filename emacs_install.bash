@@ -8,7 +8,7 @@ function abort
 
 # emacs25.2のインストール
 pwd_dir=$(dirname $(readlink -f $0))
-sudo apt install build-essential checkinstall || abort "enable dep-src"
+sudo apt install build-essential checkinstall || abort "Please enable dep-src. Check /etc/apt/sources.list"
 
 # emacs24と25は同じ依存関係を持つ
 sudo apt build-dep emacs24
