@@ -28,6 +28,6 @@ cd $pwd_dir
 sudo apt  install cmigemo ruby ruby-dev rbenv
 sudo apt  install python3-pip
 sudo pip3 install --upgrade pip
-sudo pip3 install virtualenv  
+sudo pip3 install virtualenv
 sudo apt  install libclang-dev clang
 
