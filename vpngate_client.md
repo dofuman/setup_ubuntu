@@ -11,6 +11,8 @@ sudo apt install python-requests -y
 sudo apt install python-urwid -y
 sudo apt install wmctrl -y
 ```
+不足するパッケージがある場合, vpngate-with-proxyを初回実行に
+自動的にインストールしてくれる.
 
 - vpngate-with-proxyをクローン
 
