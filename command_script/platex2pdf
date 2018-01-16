@@ -10,10 +10,15 @@ case $THECODE in # nkf が返す文字コードにあわせる
     Shift-JIS) KANJI="kanji=sjis";;
     ISO-2022-JP) KANJI="-kanji=jis";;
 esac
+# .clsによっては日本語に対応していないのでpdflatexを使う
+#PLATEX="platex"
 PLATEX="pdflatex"
 CLASS=`sed -n '/documentclass/p' $* | sed '/%.*documentclass/d' | sed -n '1p'`
 case $CLASS in
     *{u*) PLATEX="uplatex";;
 esac
 $PLATEX $KANJI $TEX # platex コマンドの発行
+pbibtex ${TEX%.*}
+$PLATEX $KANJI $TEX
+$PLATEX $KANJI $TEX
 dvipdfmx $DVI # dvipdfmx コマンドの発行
